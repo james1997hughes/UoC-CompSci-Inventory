@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75297849655",
+    "firebase_url": "https://uoc-loaning.firebaseio.com",
+    "project_id": "UoCLoaning",
+    "storage_bucket": "uoc-loaning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75297849655:android:68faa676397958b2",
+        "android_client_info": {
+          "package_name": "timespongesoftware.dev.uocloaning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75297849655-u8s7ho9o6qsdqk0tv88kt0e56n95rb6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhALsiICIAGkB5IssKPua6ZzT_ifzW3hQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75297849655-u8s7ho9o6qsdqk0tv88kt0e56n95rb6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
