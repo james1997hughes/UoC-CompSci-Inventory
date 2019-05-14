@@ -1,19 +1,16 @@
 package timespongesoftware.dev.uocloaning
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.hardware.Camera
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.FrameLayout
-import android.widget.FrameLayout.LayoutParams
 import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.camprev_barcode.*
-import timespongesoftware.dev.uocloaning.R.drawable.camoverlay
 
 class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.PreviewCallback {
     private lateinit var surfaceview: SurfaceView
@@ -31,7 +28,7 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
     private val imageProcesser = ProcessImage()
     private var frameDelay = 0
-    var barcode: String? = null
+    private var barcode: String? = null
     override fun onPreviewFrame(data: ByteArray, camera: Camera?) {
         //CALLS EVERY PREVIEW FRAME
         //
@@ -49,22 +46,40 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
                     backCamera.parameters.previewSize.height
                 )
                 if (imageProcesser.hasBeenSuccessful() && barcode!="" && barcode != null){
-                    Log.d("test", "toasting")
-                    Log.d("info", backCamera.parameters.previewSize.width.toString())
-                    Log.d("info", backCamera.parameters.previewSize.height.toString())
                     tellUser(imageProcesser.passBarcodeBack())
                 }
-            } else if (frameDelay == 20) {
+            } else if (frameDelay == 10) {
                 frameDelay = 0
             }
     }
-
+    private var inDialog:Boolean = false
     private fun tellUser(textToShow: String?){
-        Log.d("test", textToShow)
-        val toast = Toast.makeText(applicationContext, textToShow, Toast.LENGTH_SHORT)
-        barcode = null
-        toast.show()
+        if (!inDialog) {
+            Log.d("test", textToShow)
+            inDialog = true
+            confirmDialog(textToShow)
+        }
 
+    }
+    private fun confirmDialog(codeScanned: String?){
+
+        var builder : AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirm Item")
+        builder.setMessage("You have scanned item $codeScanned. Do you want to loanthis item?")
+        builder.setPositiveButton("Yes", DialogInterface.OnClickListener {
+                dialog, id ->
+            inDialog = false
+            val toast = Toast.makeText(applicationContext, "CONFIRMED", Toast.LENGTH_SHORT)
+            toast.show()
+        })
+        builder.setNegativeButton("No", DialogInterface.OnClickListener {
+                dialog, id ->
+            inDialog = false
+            val toast = Toast.makeText(applicationContext, "CANCELLED", Toast.LENGTH_SHORT)
+            toast.show()
+        })
+        var dialog:AlertDialog = builder.create()
+        dialog.show()
     }
 
     private fun setupSurface(){
