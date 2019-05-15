@@ -1,4 +1,17 @@
 <resources>
-    <string name="app_name">UoCLoaning</string>
+    <string name="app_name">UoC Loans</string>
     <string name="action_settings">Settings</string>
+    <string name="terms">
+        1. To take all reasonable care to avoid loss of or damage to the equipment.\n\n
+        2. In the event of theft, inform the police immediately and advise Paul Underhill as soon as reasonably
+        practical.\n\n
+        3. If the equipment is returned without all of its accessories, charges may apply.\n\n
+        5. During periods of high demand, we reserve the right to recall equipment for the next due date and failure to
+        return your items may result in fines.\n\n
+        6. By agreeing to these conditions, you assume liability for any costs resulting from loss or damage caused to
+        the equipment while it is in your care.\n\n
+        7. You are not authorised to take any equipment outside of the UK.\n\n
+        8. University of Chester computer policy applies\n\n
+    </string>
+    <string name="title_activity_menu">UoC Loaning</string>
 </resources>
