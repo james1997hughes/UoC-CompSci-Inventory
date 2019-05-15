@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.lang.Exception
@@ -49,4 +51,23 @@ class MenuActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.logoutbtn -> {
+            var switchToScanner: Intent = Intent(
+                this,
+                StudentCardActivity::class.java
+            )
+            startActivity(switchToScanner)
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        val toast = Toast.makeText(applicationContext, "Please log out in the top right corner, or close the app", Toast.LENGTH_LONG)
+        toast.show()
+    }
+
 }
