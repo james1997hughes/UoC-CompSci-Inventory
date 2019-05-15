@@ -9,7 +9,6 @@ import android.view.MenuInflater
 import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_menu.*
-import timespongesoftware.dev.uocloaning.R.id.textView
 import java.lang.Exception
 
 class MenuActivity : AppCompatActivity() {
@@ -28,10 +27,14 @@ class MenuActivity : AppCompatActivity() {
         }
 
         var codePassed: String?
+        var studIdPassed: String?
         try {
             var intent: Intent = intent
             codePassed = intent.getStringExtra("loanItem")
-            findViewById<TextView>(R.id.textView).setText(codePassed)
+            studIdPassed = intent.getStringExtra("studID")
+            findViewById<TextView>(R.id.loanTextView).setText(codePassed)
+            findViewById<TextView>(R.id.idTextView).setText(studIdPassed)
+            Log.d("Info", studIdPassed)
             Log.d("Info", codePassed)
         } catch(e: Exception){
             Log.d("Info", "No item passed")

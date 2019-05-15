@@ -6,27 +6,23 @@ import android.content.Intent
 import android.hardware.Camera
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.widget.ImageView
-import android.widget.Scroller
-import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.camprev_barcode.*
+import kotlinx.android.synthetic.main.activity_student_card.*
 
-class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.PreviewCallback {
+class StudentCardActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.PreviewCallback {
     private lateinit var surfaceview: SurfaceView
     private lateinit var surfaceholder: SurfaceHolder
     private lateinit var backCamera: Camera
     private lateinit var camParams: Camera.Parameters
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_barcode)
-        setupSurface()
+        setContentView(R.layout.activity_student_card)
         backCamera = getCamera()
+        setupSurface()
         setParameters()
     }
 
@@ -37,25 +33,22 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
         //CALLS EVERY PREVIEW FRAME
         //
         //Only run detection every 10 frames - 6 times per second on a 60fps camera
-        //Saves a fuck ton of processing waste
-        //Weirdly need to move camera around a bit for it to pass through properly - issue with this method of vision library???
-        //In real world use case, probably not a problem, hand shake etc, still very fast at scanning it
 
-            frameDelay++
-            if (frameDelay == 1) {
-                barcode = null
-                barcode = imageProcesser.barcodeFromCamera(
-                    data,
-                    backCamera.parameters.previewSize.width,
-                    backCamera.parameters.previewSize.height,
-                    0
-                )
-                if (imageProcesser.hasBeenSuccessful() && barcode!="" && barcode != null){
-                    tellUser(imageProcesser.passBarcodeBack())
-                }
-            } else if (frameDelay == 10) {
-                frameDelay = 0
+        frameDelay++
+        if (frameDelay == 1) {
+            barcode = null
+            barcode = imageProcesser.barcodeFromCamera(
+                data,
+                backCamera.parameters.previewSize.width,
+                backCamera.parameters.previewSize.height,
+                1
+            )
+            if (imageProcesser.hasBeenSuccessful() && barcode!="" && barcode != null){
+                tellUser(imageProcesser.passBarcodeBack())
             }
+        } else if (frameDelay == 10) {
+            frameDelay = 0
+        }
     }
     private var inDialog:Boolean = false
     private fun tellUser(textToShow: String?){
@@ -67,13 +60,18 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
     }
     private fun confirmDialog(codeScanned: String?){
-
+        var studID = codeScanned?.substring(1,8)
         var builder : AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Confirm Item")
-        builder.setMessage("You have scanned item $codeScanned. Do you want to loan this item?")
+        builder.setMessage("Login in as user $studID?")
         builder.setPositiveButton("Yes", DialogInterface.OnClickListener {
                 dialog, id ->
-            termsDialog(codeScanned)
+            var switchToMenu: Intent = Intent(
+                this,
+                MenuActivity::class.java
+            )
+            switchToMenu.putExtra("studID", studID)
+            startActivity(switchToMenu)
 
             //Start t&c dialog
 
@@ -84,42 +82,15 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
             val toast = Toast.makeText(applicationContext, "CANCELLED", Toast.LENGTH_SHORT)
             toast.show()
         })
-        var dialog:AlertDialog = builder.create()
+        var dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
-    private fun termsDialog(codeToSend: String?){
-        var builder : AlertDialog.Builder = AlertDialog.Builder( this)
-        builder.setTitle("Terms and Conditions")
-        builder.setMessage(R.string.terms)
-        builder.setPositiveButton("Agree", DialogInterface.OnClickListener{
-            dialog, id ->
-            inDialog = false
-            var switchToMenu: Intent = Intent(
-                this,
-                MenuActivity::class.java
-            )
-            switchToMenu.putExtra("loanItem", codeToSend)
-            startActivity(switchToMenu)
 
-        })
-        builder.setNegativeButton("Disagree", DialogInterface.OnClickListener { dialog, id ->
-            inDialog = false
-            val toast = Toast.makeText(applicationContext, "Didn't agree", Toast.LENGTH_SHORT)
-            toast.show()
-        })
-        var dialog:AlertDialog = builder.create()
-        dialog.show()
-        var tandcs: TextView = dialog.findViewById(android.R.id.message)
-        tandcs.setScroller(Scroller(this))
-        tandcs.isVerticalScrollBarEnabled = true
-        tandcs.movementMethod = ScrollingMovementMethod()
-
-    }
 
     private fun setupSurface(){
         try {
-            surfaceview = camPrevSV
+            surfaceview = findViewById(R.id.studIdCamPrev)
             surfaceholder = surfaceview.holder
             surfaceholder.addCallback(this)
             surfaceholder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)
@@ -136,10 +107,8 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
         }
     }
     private fun getCamera(): Camera {
-            return Camera.open()
+        return Camera.open()
     }
-
-
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
         backCamera?.startPreview()
     }
@@ -162,12 +131,6 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
             backCamera.setPreviewDisplay(surfaceholder)
             backCamera.setPreviewCallback(this)
             backCamera.startPreview()
-            var imgParams = findViewById<ImageView>(R.id.imageView).layoutParams
-            var camsurfaceparams = findViewById<SurfaceView>(R.id.camPrevSV).layoutParams
-            imgParams.width = camsurfaceparams.width
-            imgParams.height = camsurfaceparams.height
-            findViewById<ImageView>(R.id.imageView).scaleType = ImageView.ScaleType.FIT_XY
-            findViewById<ImageView>(R.id.imageView).layoutParams = imgParams
 
         } catch(E: Exception){
             Log.d("error", "couldnt start preview")
@@ -185,6 +148,4 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
     }
 
-
 }
-
