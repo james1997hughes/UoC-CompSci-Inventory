@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.hardware.Camera
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -144,10 +144,14 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
     }
 
     override fun onResume() {
-        super.onResume()
+
+        Thread {
+            backCamera = getCamera()
+        }
+        backCamera.setPreviewCallback(null)
         setupSurface()
-        backCamera = getCamera()
         setParameters()
+        super.onResume()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
@@ -171,6 +175,7 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
         try {
+            backCamera.setPreviewCallback(null)
             backCamera.stopPreview()
             backCamera.release()
         } catch(E: Exception){
