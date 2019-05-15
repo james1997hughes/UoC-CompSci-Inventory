@@ -2,13 +2,17 @@ package timespongesoftware.dev.uocloaning
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.hardware.Camera
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.widget.ImageView
+import android.widget.Scroller
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.camprev_barcode.*
 
@@ -65,12 +69,13 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
         var builder : AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Confirm Item")
-        builder.setMessage("You have scanned item $codeScanned. Do you want to loanthis item?")
+        builder.setMessage("You have scanned item $codeScanned. Do you want to loan this item?")
         builder.setPositiveButton("Yes", DialogInterface.OnClickListener {
                 dialog, id ->
-            inDialog = false
-            val toast = Toast.makeText(applicationContext, "CONFIRMED", Toast.LENGTH_SHORT)
-            toast.show()
+            termsDialog(codeScanned)
+
+            //Start t&c dialog
+
         })
         builder.setNegativeButton("No", DialogInterface.OnClickListener {
                 dialog, id ->
@@ -80,6 +85,35 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
         })
         var dialog:AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun termsDialog(codeToSend: String?){
+        var builder : AlertDialog.Builder = AlertDialog.Builder( this)
+        builder.setTitle("Terms and Conditions")
+        builder.setMessage(R.string.terms)
+        builder.setPositiveButton("Agree", DialogInterface.OnClickListener{
+            dialog, id ->
+            inDialog = false
+            var switchToMenu: Intent = Intent(
+                this,
+                MenuActivity::class.java
+            )
+            switchToMenu.putExtra("loanItem", codeToSend)
+            startActivity(switchToMenu)
+
+        })
+        builder.setNegativeButton("Disagree", DialogInterface.OnClickListener { dialog, id ->
+            inDialog = false
+            val toast = Toast.makeText(applicationContext, "Didn't agree", Toast.LENGTH_SHORT)
+            toast.show()
+        })
+        var dialog:AlertDialog = builder.create()
+        dialog.show()
+        var tandcs: TextView = dialog.findViewById(android.R.id.message)
+        tandcs.setScroller(Scroller(this))
+        tandcs.isVerticalScrollBarEnabled = true
+        tandcs.movementMethod = ScrollingMovementMethod()
+
     }
 
     private fun setupSurface(){
@@ -111,7 +145,9 @@ class BarcodeActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Prev
 
     override fun onResume() {
         super.onResume()
+        setupSurface()
         backCamera = getCamera()
+        setParameters()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
