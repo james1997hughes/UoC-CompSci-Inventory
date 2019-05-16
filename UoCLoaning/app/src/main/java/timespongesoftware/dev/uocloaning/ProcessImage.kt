@@ -1,5 +1,6 @@
 package timespongesoftware.dev.uocloaning
 
+import android.hardware.Camera
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.firebase.ml.vision.FirebaseVision
@@ -16,9 +17,10 @@ class ProcessImage: AppCompatActivity(){
     fun hasBeenSuccessful(): Boolean{
         return successAchieved
     }
-    fun barcodeFromCamera(data: ByteArray, cameraWidth: Int, cameraHeight: Int): String?{
+    fun barcodeFromCamera(data: ByteArray, cameraWidth: Int, cameraHeight: Int, barcodeType: Int): String?{
         try {
-            return detectBarcode(FirebaseVisionImage.fromByteArray(data, buildMetaData(cameraWidth, cameraHeight, 270)))
+
+            return detectBarcode(FirebaseVisionImage.fromByteArray(data, buildMetaData(cameraWidth, cameraHeight, 270)), barcodeType)
         } catch (E: Exception) {
             Log.d("error", "error with detectbarcode")
         }
@@ -27,13 +29,22 @@ class ProcessImage: AppCompatActivity(){
     private var initialized = false
     lateinit var options:FirebaseVisionBarcodeDetectorOptions
     private lateinit var detector:FirebaseVisionBarcodeDetector
-    private fun initializeReader(){
+    private fun initializeReader(barcodeType: Int){
         if (!initialized) {
-            options = FirebaseVisionBarcodeDetectorOptions.Builder()
-                .setBarcodeFormats(
-                    FirebaseVisionBarcode.FORMAT_QR_CODE
-                )
-                .build()
+
+            if(barcodeType == 0) {
+                options = FirebaseVisionBarcodeDetectorOptions.Builder()
+                    .setBarcodeFormats(
+                        FirebaseVisionBarcode.FORMAT_QR_CODE
+                    )
+                    .build()
+            } else{
+                options = FirebaseVisionBarcodeDetectorOptions.Builder()
+                    .setBarcodeFormats(
+                        FirebaseVisionBarcode.FORMAT_CODE_39
+                    )
+                    .build()
+            }
             detector = FirebaseVision.getInstance().getVisionBarcodeDetector(options)
         }
     }
@@ -41,8 +52,8 @@ class ProcessImage: AppCompatActivity(){
     fun passBarcodeBack(): String?{
         return barcodeValue
     }
-    private fun detectBarcode(imagePassed: FirebaseVisionImage): String?{
-        initializeReader()
+    private fun detectBarcode(imagePassed: FirebaseVisionImage, barcodeType: Int): String?{
+        initializeReader(barcodeType)
         detector.detectInImage(imagePassed)
             .addOnSuccessListener {
                 barcode ->

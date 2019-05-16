@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="timespongesoftware.dev.uocloaning">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="timespongesoftware.dev.uocloaning">
 
     <uses-permission android:name="android.permission.CAMERA"/>
 
@@ -8,13 +9,14 @@
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
-                 android:allowBackup="true"
-                 android:icon="@mipmap/uoc_logo"
-                 android:label="@string/app_name"
-                 android:roundIcon="@mipmap/uoc_logo_round"
-                 android:screenOrientation="portrait"
-                 android:supportsRtl="true"
-                 android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+            android:allowBackup="true"
+            android:icon="@mipmap/uoc_logo"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/uoc_logo_round"
+            android:screenOrientation="portrait"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
         <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
                 android:value="barcode"/>
@@ -29,7 +31,14 @@
         <activity
                 android:name=".MenuActivity"
                 android:label="@string/title_activity_menu"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="portrait">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="timespongesoftware.dev.uocloaning.StudentCardActivity"/>
+        </activity>
+        <activity android:name=".StudentCardActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
