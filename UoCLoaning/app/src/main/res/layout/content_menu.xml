@@ -15,6 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
             tools:layout_editor_absoluteX="16dp" android:id="@+id/loanTextView"/>
+    <androidx.recyclerview.widget.RecyclerView android:layout_width=""
+                                               android:layout_height="">
+        
+    </androidx.recyclerview.widget.RecyclerView>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"

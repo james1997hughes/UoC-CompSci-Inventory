@@ -1,0 +1,16 @@
+\\tsclient\Y\API\InvApi\InvApi\bin\Debug\netcoreapp2.1\InvApi.deps.json
+\\tsclient\Y\API\InvApi\InvApi\bin\Debug\netcoreapp2.1\InvApi.runtimeconfig.json
+\\tsclient\Y\API\InvApi\InvApi\bin\Debug\netcoreapp2.1\InvApi.runtimeconfig.dev.json
+\\tsclient\Y\API\InvApi\InvApi\bin\Debug\netcoreapp2.1\InvApi.dll
+\\tsclient\Y\API\InvApi\InvApi\bin\Debug\netcoreapp2.1\InvApi.pdb
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.csprojAssemblyReference.cache
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.csproj.CoreCompileInputs.cache
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.RazorAssemblyInfo.cache
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.RazorAssemblyInfo.cs
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.AssemblyInfoInputs.cache
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.AssemblyInfo.cs
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.RazorTargetAssemblyInfo.cache
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.dll
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.pdb
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.Properties.Resources.resources
+\\tsclient\Y\API\InvApi\InvApi\obj\Debug\netcoreapp2.1\InvApi.csproj.GenerateResource.cache
