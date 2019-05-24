@@ -1,5 +1,7 @@
 # UoC-CompSci-Inventory
 
+Alex Maden, David Andrew Robert Sloane, James Hughes and James Marszalek
+
 Inventory loaning system for non-book items at the University of Chester (Thornton campus) library.
 
 Features:
@@ -10,5 +12,6 @@ Features:
   
   Front end web app for administrators (HTML / CSS / JS / Node / REACT / ElectronJs)
   
+  Created by Bear Software Co.
   
   http://jameshughes.dev
