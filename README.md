@@ -12,6 +12,6 @@ Features:
   
   Front end web app for administrators (HTML / CSS / JS / Node / REACT / ElectronJs)
   
-  Created by Bear Software Co.
+  Created by Bear Software Co. X TimeSpongeSoftware
   
   http://jameshughes.dev
