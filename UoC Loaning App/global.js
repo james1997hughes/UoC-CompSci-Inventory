@@ -3,3 +3,4 @@ import {Platform, StyleSheet, Text, View, Dimensions, ToastAndroid} from 'react-
 
 global.ID_SCANNER_ACTIVE = true;
 global.ITEM_SCANNER_ACTIVE = false;
+global.USER_LOGGED_IN = "TestUser";

@@ -28,8 +28,8 @@ export default class App extends Component<Props> {
             onGoogleVisionBarcodesDetected={({ barcodes }) => {
               if(!dialogOpen && ID_SCANNER_ACTIVE)
               {
+                //TODO: Validate that it's a code39
                 this.displayDialogue(JSON.stringify(barcodes[0].rawData));
-                console.log(barcodes[0]);
               }
             }}
           />

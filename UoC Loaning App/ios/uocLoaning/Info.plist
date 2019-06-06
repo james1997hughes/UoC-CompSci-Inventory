@@ -35,8 +35,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
@@ -45,6 +43,18 @@
 	<key>NSAppTransportSecurity</key>
 	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
+		<key>yourdomain.com</key>
+    <dict>
+        <!--Include to allow subdomains-->
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <!--Include to allow HTTP requests-->
+        <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <!--Include to specify minimum TLS version-->
+        <key>NSTemporaryExceptionMinimumTLSVersion</key>
+        <string>TLSv1.1</string>
+    </dict>
     <key>NSAllowsArbitraryLoads</key>
     <true/>
 		<key>NSExceptionDomains</key>

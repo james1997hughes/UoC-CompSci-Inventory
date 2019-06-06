@@ -1,4 +1,7 @@
 {
   "name": "uocLoaning",
-  "displayName": "uocLoaning"
+  "displayName": "uocLoaning",
+  "expo": {
+    "sdkVersion": "32.0.6"
+ }
 }
