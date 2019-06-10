@@ -1,0 +1,295 @@
+body{
+}
+.navigation-aside{
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 15vw;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.navigation-aside .nav-button{
+  text-align: center;
+  color: black;
+  background-color: yellow;
+  width:12vw;
+  height: 12vw;
+  border-width: 2%;
+  border-style: solid;
+  border-color: black;
+  margin: 0 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+  overflow: hidden;
+}
+.navigation-aside .nav-button:visited{
+  text-decoration: none;
+  color: black;
+}
+.navigation-aside .nav-logo{
+  width:6vw;
+  height:6vw;
+  display: flex;
+  align-self: center;
+}
+.navigation-aside h3{
+  text-align: center;
+}
+.navigation-aside .nav-button{
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#render-panel{
+  position: absolute;
+  left: 15vw;
+  top: 0;
+  width: 85vw;
+  height: 100vh;
+  overflow: scroll;
+}
+.material-icons{
+  text-decoration: none;
+  color: #000;
+  align-self: center;
+}
+.material-icons:visited{
+  color: #000;
+}
+.button-container p{
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+#button-icons{
+  font-size: 5vw;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+header {
+  height: 155px;
+  width: auto;
+  background-color: #15c003;
+}
+
+body{
+  font-family: 'Rajdhani', sans-serif;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+}
+td{
+  word-wrap: break-word;
+}
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+button:hover{
+  background-color: #15c003;
+}
+
+.logoAdjust{
+  width: 450px;
+  height:130px;
+  padding: 15px;
+}
+
+.container{
+  height: 500px;
+  width: auto;
+  border: 3pt solid #dddddd;
+}
+
+.top_buttons{
+  padding-top: 10px;
+  width: auto;
+  height: 60px;
+}
+
+.buttons{
+  padding: 20px;
+  background-color: transparent;
+  display: inline;
+}
+.buttons4{
+  padding: 20px;
+  background-color: transparent;
+  display: inline;
+}
+
+.buttons3{
+  padding: 20px;
+  background-color: transparent;
+  display: inline;
+}
+
+
+.buttons1{
+  padding: 20px;
+  float: right;
+  background-color: transparent;
+  display: inline;
+}
+
+.buttons2{
+  padding: 20px;
+  background-color:#15c003;
+}
+
+.DevicesTable{
+  width: 100%;
+  display: inline;
+}
+.DevicesTable .addLink{
+  display: block;
+  background-color: #000;
+  color: #FFF;
+  text-decoration: none;
+}
+.DevicesTable .addLink:visited{
+  text-decoration: none;
+  color: #FFF;
+}
+.LoansTable{
+  width: 100%;
+  display: inline;
+}
+
+.dg-modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display:none;
+}
+
+
+.dg-modal1{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display:none;
+}
+
+
+
+.dg-modal2{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display:none;
+}
+
+.bar{
+  height: 45px;
+  width: 100%;
+  background-color: #15c003;
+}
+
+
+
+.dg-contents{
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.formButton{
+  display: block;
+  width: 50%;
+  margin: 15px auto;
+}
+
+.close{
+  position: absolute;
+  top: 0;
+  right: 14px;
+  color: red;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+/*https://loading.io/css/ */
+.loading-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-left: -64px;
+  flex-direction: column;
+}
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #000;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}
