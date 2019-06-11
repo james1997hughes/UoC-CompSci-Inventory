@@ -1,6 +1,6 @@
 # UoC-CompSci-Inventory
 
-Alex Maden, David Andrew Robert Sloane, James Hughes and James Marszalek
+Alex Maden, David Sloane, James Hughes and James Marszalek
 
 Inventory loaning system for non-book items at the University of Chester (Thornton campus) library.
 
