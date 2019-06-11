@@ -1,0 +1,2 @@
+Everything in this Obselete folder are scrapped pieces of work due to constraints not entirely of my own, 
+such as sending to ports not allowed on the current network ect. It is here to show I have actually done something!

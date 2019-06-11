@@ -1,0 +1,11 @@
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\bin\Debug\netcoreapp2.0\SMTPConnection.deps.json
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\bin\Debug\netcoreapp2.0\SMTPConnection.runtimeconfig.json
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\bin\Debug\netcoreapp2.0\SMTPConnection.runtimeconfig.dev.json
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\bin\Debug\netcoreapp2.0\SMTPConnection.dll
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.csprojAssemblyReference.cache
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.csproj.CoreCompileInputs.cache
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.AssemblyInfoInputs.cache
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.AssemblyInfo.cs
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\bin\Debug\netcoreapp2.0\SMTPConnection.pdb
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.dll
+C:\Users\James Marszalek\Desktop\SMTPConnection\SMTPConnection\obj\Debug\netcoreapp2.0\SMTPConnection.pdb
