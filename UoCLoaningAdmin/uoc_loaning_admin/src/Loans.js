@@ -24,7 +24,7 @@ class Loans extends React.Component{
     var outDate = new Date(e);
   }
   checkIn(i){
-    var data = `'{\n\t\"Loaned\":\"false\"}'`;
+    var data = `'{\n\t\"Loaned\":\"false\",\n\t\"StudentNo\":null,\n\t"SignOutDate\":null\n}'`
     fetch(`http://10.74.1.60:5000/api/item/${i}`, {
       method: 'PATCH',
       headers: {
@@ -37,7 +37,6 @@ class Loans extends React.Component{
       this.updateTable();
     }
     });
-
   }
   render(){
       if (this.state.loading === true){
@@ -65,8 +64,10 @@ class Loans extends React.Component{
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.data.slice(1,-1).map(item =>
-                {if (item.loaned === true){
+                {this.state.data.slice(0,-1).map(item =>
+                { console.log(this.state.data.slice(1,-1));
+                  if (item.loaned == true){
+                  console.log('Item loaned');
                   return(
                     <tr>
                     <td>{item.studentNo}</td>
@@ -80,7 +81,10 @@ class Loans extends React.Component{
                     <td><a href='#' onClick={() => this.checkIn(item.id)}><i class="material-icons">input</i></a></td>
                   </tr>
                 );
-              }}
+              }else{
+                console.log('Not loaned');
+              }
+            }
 
               )}
               </tbody>
