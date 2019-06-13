@@ -8,7 +8,13 @@ class Loans extends React.Component{
   render(){
     return(
       <div className="settings-panel">
-        <a href='#'><h1>Toggle Styles</h1></a>
+        <div className="credits">
+          <h1>Created by Time Sponge Software</h1>
+          <a href="https://jameshughes.dev" id="blatent-self-promotion"><h3>James Hughes</h3></a>
+          <h3>David Sloane</h3>
+          <h3>Alex Maden</h3>
+          <h3>James Marszelak</h3>
+        </div>
       </div>
     );
   }

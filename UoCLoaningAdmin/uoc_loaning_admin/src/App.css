@@ -1,7 +1,7 @@
 body{
 }
 .navigation-aside{
-  background-color: #F1E6C1;
+  background-color: #EDEDED;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -16,17 +16,18 @@ body{
 .navigation-aside .nav-button{
   text-align: center;
   color: black;
-  background-color: #3F6A8A;
+  background-color: #15C003;
   width:12vw;
   height: 12vw;
-  -webkit-box-shadow: inset 0px 0px 15px -5px #F1E6C1;
-  box-shadow: inset 0px 0px 15px -5px #F1E6C1;
+  -webkit-box-shadow: inset 0px 0px 15px -5px #FFF;
+  box-shadow: inset 0px 0px 15px -5px #FFF;
   margin: 0 9%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   text-decoration: none;
   overflow: hidden;
+  outline: 0;
 }
 .navigation-aside .nav-button:visited{
   text-decoration: none;
@@ -122,7 +123,10 @@ button:hover{
 }
 .DevicesTable .addLink{
   display: table-cell;
-  background-color: #000;
+  background-color: #15C003;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #000;
   color: #FFF;
   text-decoration: none;
 }
@@ -232,4 +236,24 @@ button:hover{
   width: 10vw;
   height: 5vh;
   font-size: 0.6em;
+}
+.settings-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.credits h1, h3{
+  padding: 2vh;
+  border: 0;
+  margin: 0;
+  text-align: center;
+}
+#blatent-self-promotion{
+  text-decoration: none;
+  color: #000;
+}
+#blatent-self-promotion:visited{
+  text-decoration: none;
+  color: #000;
 }

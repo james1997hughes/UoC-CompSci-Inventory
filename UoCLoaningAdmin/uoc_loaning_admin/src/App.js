@@ -33,8 +33,8 @@ class App extends React.Component {
       </a>
       <a className="nav-button" id="settings-btn" href="#" onClick={() => this.toggleView('settings')}>
       <div className="button-container">
-        <i class="material-icons" id="button-icons">settings</i>
-        <p>Settings</p>
+        <i class="material-icons" id="button-icons">info</i>
+        <p>About</p>
       </div>
       </a>
     </div>
@@ -62,8 +62,8 @@ class App extends React.Component {
     </a>
     <a className="nav-button" id="settings-btn" href="#" onClick={() => this.toggleView('settings')}>
       <div className="button-container">
-        <i class="material-icons" id="button-icons">settings</i>
-        <p>Settings</p>
+        <i class="material-icons" id="button-icons">info</i>
+        <p>About</p>
       </div>
     </a>
   </div>
@@ -91,8 +91,8 @@ class App extends React.Component {
     </a>
     <a className="nav-button" id="settings-btn" href="#" onClick={() => this.toggleView('settings')}>
       <div className="button-container">
-        <i class="material-icons" id="button-icons">settings</i>
-        <p>Settings</p>
+        <i class="material-icons" id="button-icons">info</i>
+        <p>About</p>
       </div>
     </a>
   </div>

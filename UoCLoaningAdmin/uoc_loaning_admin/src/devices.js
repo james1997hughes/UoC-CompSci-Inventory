@@ -7,7 +7,7 @@ class Devices extends React.Component{
   constructor(props){
     super(props);
     this.getItem = this.getItem.bind(this);
-    this.state = {loading: false, data: [], checkOutModalVisible: false, checkOutId: '', checkOutStudentNumber: '', deleteModalVisible: false, deleteId: '', editItemLoaded: null, editModalVisible: false, editId: '', editData: {deviceType: 'test', serialNumber: '', mid: '', category: '', comments: '', loaned: false}, addData: {id: '', deviceType: '', serialNumber: '', mid: '', category: '', comments: ''}, studentPic: null};
+    this.state = {loading: false, data: [], checkOutModalVisible: false, checkOutId: '', checkOutStudentNumber: '', deleteModalVisible: false, deleteId: '', editItemLoaded: null, editModalVisible: false, editId: '', editData: {deviceType: 'test', serialNumber: '', mid: '', category: '', comments: '', loaned: false}, addData: {id: '', deviceType: '', serialNumber: '', mid: '', category: '', comments: ''}, studentPic: ''};
   }
   componentDidMount() {
     this.updateTable();
@@ -51,7 +51,7 @@ class Devices extends React.Component{
     this.setState({editModalVisible: true});
   }
   updateItem(){
-      var data = `'{\n\t\"DeviceType\":\"${this.state.editData.deviceType}\",\n\t\"Category\":\"${this.state.editData.category}\",\n\t\"MID\":\"${this.state.editData.mid}\",\n\t\"SerialNumber\":\"${this.state.editData.serialNumber}\",\n\t\"Loaned\":\"${this.state.editData.loaned}\"\n\t\"Comments\":\"${this.state.editData.comments}\"\n}'`;
+      var data = `'{\n\t\"DeviceType\":\"${this.state.editData.deviceType}\",\n\t\"Category\":\"${this.state.editData.category}\",\n\t\"MID\":\"${this.state.editData.mid}\",\n\t\"SerialNumber\":\"${this.state.editData.serialNumber}\",\n\t\"Loaned\":\"${this.state.editData.loaned}\",\n\t\"Comments\":\"${this.state.editData.comments}\"\n}'`;
       fetch(`http://10.74.1.60:5000/api/item/${this.state.editId}`, {
         method: 'PATCH',
         headers: {
@@ -147,26 +147,51 @@ class Devices extends React.Component{
     });
   }
   getPicture(){
-    let pictemp = this.getStudentPicture(this.state.checkOutStudentNumber);
+    var pictemp = this.getStudentPicture(this.state.checkOutStudentNumber);
     this.setState({studentPic: pictemp});
   }
   getStudentPicture(STUDENTID){
         /*
           ==MESSAGE TO BIG PAUL==
-          Change the username and password variables to another account pls
+          This didn't get done due to time.
+          Need to make an initial post request to log in, then once you have the login credential, make another request for the picture
+          The code below sort of works, it will authorize and fetch most of the picture, but
+
+          Change the username and password variables to another account
           Currently using James Marszelak's
         */
+        let imageRetrieved;
         let username = '1706376';
         let password = 'Famas1167';
         var data = `curl=Z2Fv2Z2FprofileZ2Fprofile.phpZ3FoperationZ3DphotoZ26otheruserZ3D${STUDENTID}&flags=0&forcedownlevel=0&formdir=9&username=${username}&password=${password}&SubmitCreds=Sign+In`;
-        console.log("hi");
         fetch(`https://apps.chester.ac.uk/CookieAuth.dll?Logon`, {
           method: 'POST',
           redirect: 'follow',
+          credentials: 'include',
+          headers: {
+            'Content-Type': `application/x-www-form-urlencoded`,
+            'Referer': `https://apps.chester.ac.uk/CookieAuth.dll?GetLogon?curl=Z2Fv2Z2FprofileZ2Fprofile.phpZ3FoperationZ3DphotoZ26otheruserZ3D1719922&reason=0&formdir=9`,
+          },
+          keepalive: true,
           body: data,
-        }).then(response => {
-          return response;
-        });
+        }).then(
+          fetch(`https://apps.chester.ac.uk/v2/profile/profile.php?operation=photo&otheruser=${STUDENTID}`, {
+            keepalive: true,
+            credentials: 'include',
+            headers: {
+              'Content-Type': `application/x-www-form-urlencoded`,
+              'Referer': `https://apps.chester.ac.uk/CookieAuth.dll?GetLogon?curl=Z2Fv2Z2FprofileZ2Fprofile.phpZ3FoperationZ3DphotoZ26otheruserZ3D1719922&reason=0&formdir=9`,
+            },
+
+          })
+          .then(response => response.blob())
+          .then(image =>{
+            imageRetrieved = URL.createObjectURL(image);
+            console.log(imageRetrieved);
+            return imageRetrieved;
+          })
+        );
+
   }
   confirmCheckOut(){
     this.dismissModal();
@@ -202,7 +227,7 @@ if (this.state.loading === true){
               ?
               <div className="modal-container">
                 <div className="modal-inner">
-                  <h3>Confirm loan for user {this.state.checkOutStudentNumber}</h3><a href='#' className="dismiss-btn" onClick={() => this.dismissModal()}>X</a>
+                  <h3>Confirm loan for user {this.state.checkOutStudentNumber} with picture {this.state.studentPic}</h3><a href='#' className="dismiss-btn" onClick={() => this.dismissModal()}>X</a>
                   <img src={this.studentPic} className="student-picture"/>
                   <button className="submit-btn" onClick={() => this.checkOut(this.state.checkOutId)}>Check Out</button>
                 </div>
